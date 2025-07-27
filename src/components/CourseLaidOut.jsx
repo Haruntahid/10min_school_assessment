@@ -10,7 +10,7 @@ function CourseLaidOut() {
 
   return (
     <>
-      <p className="text-[26px] font-semibold mb-5">{content?.name}</p>
+      <p className="text-[26px] font-semibold my-5">{content?.name}</p>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-[#111827] p-6">
         {content.values.map((el, index) => (
           <div key={index} className="flex gap-4 p-4">

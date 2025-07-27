@@ -1,15 +1,27 @@
-import React, { useContext } from "react";
+import React, { useContext, useRef } from "react";
 import { CourseContext } from "../context/CourseContext";
 import { FaStar } from "react-icons/fa";
 import SectionBar from "./SectionBar";
 import Instructor from "./Instructor";
 import CourseLaidOut from "./CourseLaidOut";
+import Pointers from "./Pointers";
 
 function LeftSide() {
   const { courseData, language, setLanguage, error } =
     useContext(CourseContext);
 
   const sections = courseData?.sections?.filter((s) => s.name?.trim()) || [];
+
+  // Dynamic refs for each section by name
+  const sectionRefs = useRef({});
+
+  // Scroll function using section name
+  const scrollToSection = (name) => {
+    const el = sectionRefs.current[name];
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
 
   return (
     <div>
@@ -59,10 +71,34 @@ function LeftSide() {
         </div>
       </div>
 
-      {/* SectionBar Component */}
-      {sections.length > 0 && <SectionBar sections={sections} />}
-      <Instructor />
-      <CourseLaidOut />
+      {/* SectionBar with scroll function */}
+      {sections.length > 0 && (
+        <SectionBar sections={sections} onSelectByName={scrollToSection} />
+      )}
+
+      {/* Render each section with a dynamic ref */}
+      <div className="mt-10">
+        {sections.map((section) => (
+          <div
+            key={section.name}
+            ref={(el) => (sectionRefs.current[section.name] = el)}
+            className="mb-10"
+          >
+            {section.type === "instructors" ? (
+              <Instructor />
+            ) : section.type === "features" ? (
+              <CourseLaidOut />
+            ) : section.type === "pointers" ? (
+              <Pointers />
+            ) : (
+              <div>
+                <p className="text-[26px] font-semibold mb-5">{section.name}</p>
+                {/* Add dynamic or fallback content */}
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

@@ -4,7 +4,7 @@ import {
   IoIosArrowDroprightCircle,
 } from "react-icons/io";
 
-function SectionBar({ sections }) {
+function SectionBar({ sections, onSelectByName }) {
   const scrollRef = useRef(null);
   const itemRefs = useRef([]);
   const indicatorRef = useRef(null);
@@ -21,6 +21,11 @@ function SectionBar({ sections }) {
 
   const handleSelect = (index) => {
     setSelectedIndex(index);
+
+    const sectionName = sections[index]?.name;
+    if (onSelectByName && sectionName) {
+      onSelectByName(sectionName); // by name
+    }
   };
 
   // Move the green indicator
@@ -46,16 +51,16 @@ function SectionBar({ sections }) {
         <IoIosArrowDropleftCircle size={40} color="#9f9f9f" />
       </button>
 
-      {/* Scrollable Section Tabs */}
+      {/* Scrollable Tabs */}
       <div
         ref={scrollRef}
         className="overflow-x-auto no-scrollbar whitespace-nowrap px-10 relative"
       >
         <div className="flex gap-6 w-max relative">
-          {/* Full gray line */}
+          {/* Background Line */}
           <div className="absolute bottom-0 left-0 w-full h-[2px] bg-gray-300" />
 
-          {/* Green sliding segment */}
+          {/* Green Sliding Indicator */}
           <div
             ref={indicatorRef}
             className="absolute bottom-0 h-[2px] bg-green-600 transition-all duration-300"
@@ -64,7 +69,7 @@ function SectionBar({ sections }) {
           {/* Section Items */}
           {sections.map((section, index) => (
             <p
-              key={index}
+              key={section.name}
               ref={(el) => (itemRefs.current[index] = el)}
               onClick={() => handleSelect(index)}
               className={`px-2 pb-3 cursor-pointer font-medium ${

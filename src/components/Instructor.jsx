@@ -8,7 +8,7 @@ function Instructor() {
       <p className="text-[26px] font-semibold mb-5">
         {courseData?.sections[2].name}
       </p>
-      <div className="border-[1px] border-[#dee4ed] rounded-2xl p-8">
+      <div className="border-[1px] border-[#dee4ed] rounded-2xl p-5">
         <div className="flex gap-4">
           <img
             className="rounded-full h-24 w-24"
