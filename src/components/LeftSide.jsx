@@ -6,6 +6,10 @@ import Instructor from "./Instructor";
 import CourseLaidOut from "./CourseLaidOut";
 import Pointers from "./Pointers";
 import CourseDetails from "./CourseDetails";
+import Payment from "./Payment";
+import About from "./About";
+import FaQ from "./FaQ";
+import ExclusiveFeature from "./ExclusiveFeature";
 
 function LeftSide() {
   const { courseData, language, setLanguage, error } =
@@ -93,6 +97,14 @@ function LeftSide() {
               <Pointers />
             ) : section.type === "requirements" ? (
               <CourseDetails />
+            ) : section.type === "how_to_pay" ? (
+              <Payment />
+            ) : section.type === "about" ? (
+              <About />
+            ) : section.type === "faq" ? (
+              <FaQ />
+            ) : section.type === "feature_explanations" ? (
+              <ExclusiveFeature />
             ) : (
               <div>
                 <p className="text-[26px] font-semibold mb-5">{section.name}</p>
