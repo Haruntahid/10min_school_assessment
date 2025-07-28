@@ -10,7 +10,7 @@ function ExclusiveFeature() {
     <>
       <p className="text-[26px] font-semibold my-5">{content?.name}</p>
 
-      <div className="border border-[#dee4ed] p-6 rounded-2xl divide-y divide-[#dee4ed]">
+      <div className="border border-[#dee4ed] px-6 rounded-2xl divide-y divide-[#dee4ed]">
         {content?.values?.map((item, index) => (
           <div
             key={item.id}

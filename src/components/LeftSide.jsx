@@ -10,6 +10,7 @@ import Payment from "./Payment";
 import About from "./About";
 import FaQ from "./FaQ";
 import ExclusiveFeature from "./ExclusiveFeature";
+import FreeItem from "./FreeItem";
 
 function LeftSide() {
   const { courseData, language, setLanguage, error } =
@@ -105,6 +106,8 @@ function LeftSide() {
               <FaQ />
             ) : section.type === "feature_explanations" ? (
               <ExclusiveFeature />
+            ) : section.type === "free_items" ? (
+              <FreeItem />
             ) : (
               <div>
                 <p className="text-[26px] font-semibold mb-5">{section.name}</p>
