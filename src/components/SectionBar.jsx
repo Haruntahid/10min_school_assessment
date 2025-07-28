@@ -69,7 +69,7 @@ function SectionBar({ sections, onSelectByName }) {
           {/* Section Items */}
           {sections.map((section, index) => (
             <p
-              key={section.name}
+              key={section.order_idx}
               ref={(el) => (itemRefs.current[index] = el)}
               onClick={() => handleSelect(index)}
               className={`px-2 pb-3 cursor-pointer font-medium ${

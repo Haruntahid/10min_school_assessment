@@ -4,7 +4,6 @@ import { CourseContext } from "../context/CourseContext";
 function CourseLaidOut() {
   const { courseData } = useContext(CourseContext);
   const content = courseData?.sections[3];
-  console.log(content);
 
   if (!content) return null;
 

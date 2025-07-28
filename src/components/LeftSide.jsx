@@ -5,6 +5,7 @@ import SectionBar from "./SectionBar";
 import Instructor from "./Instructor";
 import CourseLaidOut from "./CourseLaidOut";
 import Pointers from "./Pointers";
+import CourseDetails from "./CourseDetails";
 
 function LeftSide() {
   const { courseData, language, setLanguage, error } =
@@ -80,7 +81,7 @@ function LeftSide() {
       <div className="mt-10">
         {sections.map((section) => (
           <div
-            key={section.name}
+            key={section.order_idx}
             ref={(el) => (sectionRefs.current[section.name] = el)}
             className="mb-10"
           >
@@ -90,6 +91,8 @@ function LeftSide() {
               <CourseLaidOut />
             ) : section.type === "pointers" ? (
               <Pointers />
+            ) : section.type === "requirements" ? (
+              <CourseDetails />
             ) : (
               <div>
                 <p className="text-[26px] font-semibold mb-5">{section.name}</p>
